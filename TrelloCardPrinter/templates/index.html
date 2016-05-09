@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trello Card Printer</title>
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>
+</head>
+
+<body>
+    <div class="container body-content">
+        <div class="jumbotron">
+            <div class="guide">Export a trello board as JSON and paste it here</div>
+            <textarea></textarea>
+        </div>
+
+        <div class="result">
+
+        </div>
+    </div>
+
+    <script src="/static/scripts/jquery-1.10.2.js"></script>
+    <script src="/static/scripts/bootstrap.js"></script>
+    <script src="/static/scripts/respond.js"></script>
+    <script>
+        $('textarea').on('paste', function () {
+            var element = this;
+            setTimeout(function () {
+                var text = $(element).val();
+                $(".result").html("");
+                $.post("/print", { json: text }, function (data) {
+                    $(".result").html(data);
+                    $("html, body").scrollTop($(".result").offset().top);
+                    window.print()
+                });
+                $(element).val(JSON.stringify(JSON.parse(text), null, 2));
+            }, 100);
+        });
+        $('textarea').focus(function () {
+            $('.guide').hide();
+        });
+        $('textarea').blur(function () {
+            if ($('textarea').val() == "") $('.guide').show();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% for card in cards %}
+<div class="card">
+    <h3>{{ card.name }}</h3>
+    <p>{{ card.desc }}</p>
+    {% for checklist in card.checklists %}
+    <h4>{{ checklist.name }}</h4>
+    <ul>
+        {% for item in checklist.checklistItems %}
+            <li>{% if item.state == "complete" %}☑ {% else %}☐ {% endif %}{{ item.name }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</div>
+{% endfor %}

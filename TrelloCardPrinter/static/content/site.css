@@ -1,0 +1,107 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.card {
+    border: solid 1px black;
+    margin: 10px;
+    padding: 10px;
+    width: 500px;
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.card ul {
+    padding-left: 1.5em;
+    list-style-type: none;
+}
+
+.card li {
+    text-indent: -1.2em;
+}
+
+.guide {
+    font-size: 40px;
+    position: relative;
+    top: 40px;
+    width: 100%;
+    height: 0;
+    text-align: center;
+    overflow: visible;
+    float: left;
+    color: #BFBFBF;
+}
+
+textarea {
+    width: 100%;
+    max-width: none;
+    height: 500px;
+    line-height: normal;
+}
+
+@media print {
+    .card {
+        page-break-inside: avoid;
+    }
+
+    .body-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    body {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+    }
+
+    .container {
+        margin: 0;
+    }
+
+    .jumbotron {
+        display: none;
+    }
+
+}
