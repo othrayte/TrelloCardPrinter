@@ -1,1 +1,1 @@
-web: gunicorn trellocardprinter.wsgi --log-file -
+web: gunicorn runserver:app --log-file -
