@@ -23,7 +23,17 @@ def print():
                     'name': checklist['name'] or "",
                     'checklistItems': [{'name': item['name'] or "", 'state': item['state'] or ""} for item in checklist['checkItems']]
                   } for checklist in jsonData['checklists']}
-    cards = [{'name': card['name'], 'desc': card['desc'], 'checklists': [checklists[id] for id in card['idChecklists']]} for card in jsonData['cards']]
+    lists = {list_['id']: {
+        'name': list_['name'] or "",
+        'closed': bool(list_['closed']),
+        'position': list_['pos']
+        } for list_ in jsonData['lists']}
+
+    cards = [{
+        'name': card['name'],
+        'desc': card['desc'],
+        'checklists': [checklists[id] for id in card['idChecklists']]
+        } for card in jsonData['cards'] if not lists[card['idList']]['closed']]
     
     return render_template(
         'print.html',
